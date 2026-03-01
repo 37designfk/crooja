@@ -1,0 +1,58 @@
+---
+interface Props {
+  slug: string;
+  name: string;
+  camber: string;
+  flex: string;
+  flexValue: number;
+  isNew?: boolean;
+}
+
+const { slug, name, camber, flex, flexValue, isNew = false } = Astro.props;
+---
+
+<a
+  href={`/products/${slug}`}
+  style="display: block; background-color: #111111; border: 1px solid #222222; padding: 2rem; text-decoration: none; transition: border-color 0.3s, transform 0.3s; position: relative;"
+  class="product-card"
+>
+  {isNew && (
+    <span style="position: absolute; top: 1rem; right: 1rem; background-color: #E69B9B; color: #000000; font-size: 10px; font-weight: 700; padding: 3px 8px; letter-spacing: 1px; font-family: 'Manrope', sans-serif;">
+      NEW
+    </span>
+  )}
+
+  <h3 style="font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700; color: #ffffff; letter-spacing: 4px; margin-bottom: 1.5rem;">
+    {name}
+  </h3>
+
+  <div style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+    <span style="color: #666666; font-size: 11px; letter-spacing: 1px; min-width: 60px;">CAMBER</span>
+    <span style="color: #cccccc; font-size: 12px; letter-spacing: 1px;">{camber}</span>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <span style="color: #666666; font-size: 11px; letter-spacing: 1px; min-width: 60px;">FLEX</span>
+    <span style="color: #cccccc; font-size: 12px; letter-spacing: 1px; margin-right: 0.75rem;">{flex}</span>
+    <!-- フレックスバー -->
+    <div style="display: flex; gap: 3px;">
+      {[1,2,3,4,5].map((i) => (
+        <div style={`width: 16px; height: 6px; border-radius: 1px; background-color: ${i <= flexValue ? '#E69B9B' : '#333333'};`}></div>
+      ))}
+    </div>
+  </div>
+
+  <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 4px; color: #E69B9B; font-size: 12px; letter-spacing: 2px; font-family: 'Cinzel', serif;">
+    VIEW
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+  </div>
+</a>
+
+<style>
+  .product-card:hover {
+    border-color: #E69B9B !important;
+    transform: translateY(-2px);
+  }
+</style>

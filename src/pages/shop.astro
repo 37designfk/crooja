@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const shops = [
+  { name: 'スポタカ',       url: 'https://spotaka.co.jp/',           desc: '心斎橋BIGSTEP本店' },
+  { name: 'SPORTS BOMBER', url: 'https://instagram.com/sports_bomber', desc: 'SPORTS BOMBER' },
+  { name: 'BREAK OUT',     url: 'https://www.breakout-jp.com/',      desc: 'BREAK OUT' },
+  { name: 'FLEA BOARDSHOP',url: 'https://flea.jp/',                  desc: '熊谷店 / 高崎 / 伊勢崎 / WEB' },
+  { name: 'MISTY',         url: 'https://www.misty-snow.com/',       desc: 'MISTY' },
+  { name: 'DREAMY',        url: 'https://www.dreamy1117.com/',       desc: 'DREAMY' },
+  { name: 'APORITO',       url: 'https://dot9.biz/',                 desc: '広島店 / 豊橋' },
+  { name: 'DOT9',          url: 'https://dot9.biz/',                 desc: 'DOT9' },
+  { name: 'ウインドボーイ', url: 'https://www.windboy.jp/',           desc: 'ウインドボーイ' },
+];
+---
+
+<Layout title="SHOP" description="CROOJA 取扱店舗一覧">
+
+  <div class="page-header">
+    <h1 class="page-title">SHOP</h1>
+    <p class="page-sub">取扱店舗</p>
+  </div>
+
+  <section class="shop-section">
+    <div class="shop-list">
+      {shops.map(shop => (
+        <div class="shop-row">
+          <div>
+            <h3 class="shop-name">
+              <a href={shop.url} target="_blank" rel="noopener noreferrer" class="shop-link">
+                {shop.name}
+              </a>
+            </h3>
+            <p class="shop-desc">{shop.desc}</p>
+          </div>
+          <a href={shop.url} target="_blank" rel="noopener noreferrer" class="shop-arrow" aria-label="サイトを開く">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    background: #fff;
+    padding: 4rem 1.5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .page-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 400;
+    color: #111;
+    letter-spacing: 14px;
+    margin-bottom: 0.5rem;
+  }
+  .page-sub {
+    color: #bbb;
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-family: 'Cinzel', serif;
+  }
+  .shop-section {
+    background: #fff;
+    padding: 2rem 1.5rem 5rem;
+  }
+  .shop-list {
+    max-width: 720px;
+    margin: 0 auto;
+    border-top: 1px solid #ebebeb;
+  }
+  .shop-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .shop-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #111;
+  }
+  .shop-link {
+    color: #111;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .shop-link:hover { color: #E69B9B; }
+  .shop-desc {
+    color: #aaa;
+    font-size: 12px;
+  }
+  .shop-arrow {
+    color: #ccc;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+  .shop-arrow:hover { color: #E69B9B; }
+</style>

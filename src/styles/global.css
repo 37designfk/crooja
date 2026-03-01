@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-black: #000000;
+  --color-brand-dark: #0e0e0e;
+  --color-brand-pink: #E69B9B;
+  --color-brand-gray: #999999;
+  --font-cinzel: 'Cinzel', serif;
+  --font-manrope: 'Manrope', sans-serif;
+}
+
+/* ベーススタイル */
+html {
+  background-color: #ffffff;
+  color: #111111;
+  font-family: 'Manrope', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #111111;
+  font-family: 'Manrope', sans-serif;
+}
+
+/* スクロールバー */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 4px;
+}
+
+/* リンク */
+a {
+  color: #111111;
+  transition: color 0.3s;
+}
+a:hover {
+  color: #E69B9B;
+}

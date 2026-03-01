@@ -1,0 +1,165 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { products } from '../../data/products';
+---
+
+<Layout title="PRODUCTS" description="CROOJA スノーボード全モデル一覧">
+
+  <section class="page-header">
+    <p class="page-label">26-27 SEASON LINE UP</p>
+    <h1 class="page-title">PRODUCTS</h1>
+  </section>
+
+  <!-- 全ボード一覧ビジュアル -->
+  <section class="lineup-section">
+    <img src="/images/catalog-12.png" alt="CROOJA 26-27 全モデル" class="lineup-img" />
+  </section>
+
+  <!-- カタログページグリッド -->
+  <section class="catalog-grid">
+    {products.map((p, i) => (
+      <a href={`/products/${p.slug}`} class="catalog-card">
+        {p.isNew && <span class="card-new">NEW MODEL</span>}
+        <div class="card-img-wrap">
+          <img src={p.catalogImage} alt={`CROOJA ${p.name}`} class="card-img" loading="lazy" />
+        </div>
+        <div class="card-footer">
+          <div class="card-name-row">
+            <h2 class="card-name">{p.name}</h2>
+            <span class="card-name-ja">{p.nameJa}</span>
+          </div>
+          <div class="card-meta">
+            <span class="card-camber">{p.camber}</span>
+            <span class="card-sep">|</span>
+            <span class="card-flex">FLEX {p.flex}</span>
+          </div>
+        </div>
+      </a>
+    ))}
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    background: #fff;
+    padding: 4rem 1.5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .page-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    color: #E69B9B;
+    letter-spacing: 5px;
+    margin-bottom: 0.75rem;
+  }
+  .page-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 400;
+    color: #111;
+    letter-spacing: 14px;
+  }
+
+  .lineup-section {
+    background: #fff;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .lineup-img {
+    max-width: 860px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* カタログカードグリッド */
+  .catalog-grid {
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background-color: #e8e8e8; /* gap の色 */
+    padding: 1px;
+  }
+  .catalog-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: #fff;
+    position: relative;
+    transition: box-shadow 0.3s;
+  }
+  .catalog-card:hover {
+    box-shadow: 0 0 0 2px #E69B9B inset;
+    z-index: 1;
+  }
+  .card-new {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    background: #E69B9B;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 3px 8px;
+    font-family: 'Manrope', sans-serif;
+    z-index: 2;
+  }
+  .card-img-wrap {
+    overflow: hidden;
+    background: #fafafa;
+  }
+  .card-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .catalog-card:hover .card-img {
+    transform: scale(1.02);
+  }
+  .card-footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid #ebebeb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-name-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+  .card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: 3px;
+    transition: color 0.2s;
+  }
+  .catalog-card:hover .card-name { color: #E69B9B; }
+  .card-name-ja {
+    color: #aaa;
+    font-size: 11px;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 10px;
+    color: #aaa;
+    letter-spacing: 1px;
+    font-family: 'Cinzel', serif;
+    white-space: nowrap;
+  }
+  .card-sep { color: #ddd; }
+
+  @media (max-width: 640px) {
+    .catalog-grid { grid-template-columns: 1fr; }
+  }
+</style>

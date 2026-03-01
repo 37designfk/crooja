@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="CONTACT" description="CROOJA お問い合わせ">
+
+  <div class="page-header">
+    <h1 class="page-title">CONTACT</h1>
+    <p class="page-sub">お問い合わせ</p>
+  </div>
+
+  <section class="contact-section">
+    <div class="form-wrap">
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form">
+        <input type="hidden" name="form-name" value="contact" />
+        <p style="display:none;"><label>Don't fill this: <input name="bot-field" /></label></p>
+
+        <label class="field">
+          <span class="field-label">NAME <em>*</em></span>
+          <input type="text" name="name" required placeholder="お名前" class="field-input" />
+        </label>
+
+        <label class="field">
+          <span class="field-label">EMAIL <em>*</em></span>
+          <input type="email" name="email" required placeholder="example@email.com" class="field-input" />
+        </label>
+
+        <label class="field">
+          <span class="field-label">SUBJECT <em>*</em></span>
+          <input type="text" name="subject" required placeholder="件名" class="field-input" />
+        </label>
+
+        <label class="field">
+          <span class="field-label">MESSAGE <em>*</em></span>
+          <textarea name="message" required rows="7" placeholder="お問い合わせ内容をご記入ください" class="field-input field-textarea"></textarea>
+        </label>
+
+        <button type="submit" class="submit-btn">SEND</button>
+      </form>
+
+      <p class="note">
+        ※ 返信には数日かかる場合があります。<br />
+        ※ 営業・スパムへの返信は行いません。
+      </p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    background: #fff;
+    padding: 4rem 1.5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .page-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 400;
+    color: #111;
+    letter-spacing: 14px;
+    margin-bottom: 0.5rem;
+  }
+  .page-sub {
+    color: #bbb;
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-family: 'Cinzel', serif;
+  }
+  .contact-section {
+    background: #fff;
+    padding: 3rem 1.5rem 5rem;
+  }
+  .form-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .field-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 2px;
+  }
+  .field-label em {
+    color: #E69B9B;
+    font-style: normal;
+    margin-left: 3px;
+  }
+  .field-input {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #111;
+    padding: 11px 14px;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: 'Manrope', sans-serif;
+  }
+  .field-input:focus {
+    border-color: #E69B9B;
+  }
+  .field-textarea {
+    resize: vertical;
+  }
+  .submit-btn {
+    background: #1e1a16;
+    color: #fff;
+    border: none;
+    padding: 13px 48px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .submit-btn:hover {
+    background: #E69B9B;
+  }
+  .note {
+    color: #bbb;
+    font-size: 12px;
+    margin-top: 2rem;
+    line-height: 2;
+  }
+</style>

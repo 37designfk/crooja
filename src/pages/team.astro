@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { riders } from '../data/riders';
+
+const categories = [
+  { key: 'main' as const, label: 'MAIN RIDER', riders: riders.main },
+  { key: 'team' as const, label: 'TEAM RIDER', riders: riders.team },
+  { key: 'crew' as const, label: 'CREW RIDER', riders: riders.crew },
+];
+---
+
+<Layout title="TEAM" description="CROOJA ライダー紹介">
+
+  <div class="page-header">
+    <h1 class="page-title">TEAM</h1>
+    <p class="page-sub">RIDERS</p>
+  </div>
+
+  {categories.map(cat => (
+    <section class="rider-section">
+      <div class="section-inner">
+        <div class="cat-label">
+          <span class="cat-bar"></span>
+          <h2 class="cat-title">{cat.label}</h2>
+        </div>
+        <div class="rider-grid">
+          {cat.riders.map(rider => (
+            <div class="rider-card">
+              <div class="rider-img-wrap">
+                <img
+                  src={rider.image}
+                  alt={rider.nameEn}
+                  class="rider-img"
+                  loading="lazy"
+                />
+              </div>
+              <div class="rider-info">
+                <p class="rider-name-en">{rider.nameEn}</p>
+                <p class="rider-name-ja">{rider.nameJa}</p>
+                {rider.instagram && (
+                  <a href={rider.instagram} target="_blank" rel="noopener noreferrer" class="rider-sns">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                      <circle cx="12" cy="12" r="4"/>
+                      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                    </svg>
+                    Instagram
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+</Layout>
+
+<style>
+  .page-header {
+    background: #fff;
+    padding: 4rem 1.5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .page-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 400;
+    color: #111;
+    letter-spacing: 14px;
+    margin-bottom: 0.5rem;
+  }
+  .page-sub {
+    color: #bbb;
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-family: 'Cinzel', serif;
+  }
+  .rider-section {
+    background: #fff;
+    padding: 3rem 1.5rem;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .rider-section:nth-child(even) {
+    background: #f8f8f8;
+  }
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .cat-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .cat-bar {
+    width: 3px;
+    height: 18px;
+    background: #E69B9B;
+    display: block;
+    flex-shrink: 0;
+  }
+  .cat-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 4px;
+    font-weight: 400;
+  }
+  .rider-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .rider-card {
+    background: #fff;
+    border: 1px solid #ebebeb;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+  .rider-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .rider-img-wrap {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #f0f0f0;
+  }
+  .rider-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top;
+    transition: transform 0.4s ease;
+  }
+  .rider-card:hover .rider-img { transform: scale(1.04); }
+  .rider-info {
+    padding: 1rem;
+  }
+  .rider-name-en {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: #111;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.25rem;
+  }
+  .rider-name-ja {
+    color: #aaa;
+    font-size: 11px;
+    margin-bottom: 0.75rem;
+  }
+  .rider-sns {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #bbb;
+    font-size: 10px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .rider-sns:hover { color: #E69B9B; }
+</style>
