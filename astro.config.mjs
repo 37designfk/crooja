@@ -9,8 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 // リポジトリ名でサブパスにデプロイする場合は base: '/リポジトリ名' を追加
 export default defineConfig({
   site: 'https://37designfk.github.io',
-  base: '/crooja',
-  // base: '/crooja',  // ← サブパス必要な場合はコメントアウト解除
+  base: '/crooja/',
   output: 'static',
   vite: {
     plugins: [tailwindcss()]
