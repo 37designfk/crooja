@@ -8,7 +8,8 @@ import tailwindcss from '@tailwindcss/vite';
 // site: 'https://<GitHubユーザー名>.github.io' に変更してください
 // リポジトリ名でサブパスにデプロイする場合は base: '/リポジトリ名' を追加
 export default defineConfig({
-  site: 'https://crooja.github.io',
+  site: 'https://37designfk.github.io',
+  base: '/crooja',
   // base: '/crooja',  // ← サブパス必要な場合はコメントアウト解除
   output: 'static',
   vite: {
