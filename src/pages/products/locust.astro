@@ -7,6 +7,7 @@ const all = products;
 const idx = all.findIndex(p => p.slug === 'locust');
 const prev = all[idx - 1] ?? null;
 const next = all[idx + 1] ?? null;
+const b = import.meta.env.BASE_URL;
 ---
 
 <Layout title={product.name} description={`CROOJA ${product.name} - ${product.nameJa}`}>
@@ -22,7 +23,7 @@ const next = all[idx + 1] ?? null;
   <section class="catalog-section">
     <div class="catalog-wrap">
       <img
-        src={product.catalogImage}
+        src={b + product.catalogImage.slice(1)}
         alt={`CROOJA ${product.name} カタログ`}
         class="catalog-full"
       />
@@ -40,14 +41,14 @@ const next = all[idx + 1] ?? null;
   <nav class="prod-nav">
     <div class="nav-inner">
       {prev ? (
-        <a href={`/products/${prev.slug}`} class="nav-item nav-prev">
+        <a href={`${b}products/${prev.slug}`} class="nav-item nav-prev">
           <span class="nav-dir">← PREV</span>
           <span class="nav-name">{prev.name}</span>
         </a>
       ) : <div />}
-      <a href="/products" class="nav-all">ALL PRODUCTS</a>
+      <a href={`${b}products`} class="nav-all">ALL PRODUCTS</a>
       {next ? (
-        <a href={`/products/${next.slug}`} class="nav-item nav-next">
+        <a href={`${b}products/${next.slug}`} class="nav-item nav-next">
           <span class="nav-dir">NEXT →</span>
           <span class="nav-name">{next.name}</span>
         </a>

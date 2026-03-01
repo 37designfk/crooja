@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { riders } from '../data/riders';
+const b = import.meta.env.BASE_URL;
 
 const categories = [
   { key: 'main' as const, label: 'MAIN RIDER', riders: riders.main },
@@ -28,7 +29,7 @@ const categories = [
             <div class="rider-card">
               <div class="rider-img-wrap">
                 <img
-                  src={rider.image}
+                  src={b + rider.image.slice(1)}
                   alt={rider.nameEn}
                   class="rider-img"
                   loading="lazy"

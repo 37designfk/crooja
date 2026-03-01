@@ -1,17 +1,19 @@
 ---
+const b = import.meta.env.BASE_URL;
+
 const navItems = [
-  { label: 'TEAM', href: '/team' },
-  { label: 'SHOP', href: '/shop' },
-  { label: 'CONTACT', href: '/contact' },
+  { label: 'TEAM', href: `${b}team` },
+  { label: 'SHOP', href: `${b}shop` },
+  { label: 'CONTACT', href: `${b}contact` },
 ];
 
 const productItems = [
-  { label: 'LOCUST', href: '/products/locust' },
-  { label: 'WORM', href: '/products/worm' },
-  { label: 'MANTIS', href: '/products/mantis' },
-  { label: 'HORNET', href: '/products/hornet' },
-  { label: 'BEETLE', href: '/products/beetle' },
-  { label: 'SPIDER', href: '/products/spider', isNew: true },
+  { label: 'LOCUST', href: `${b}products/locust` },
+  { label: 'WORM', href: `${b}products/worm` },
+  { label: 'MANTIS', href: `${b}products/mantis` },
+  { label: 'HORNET', href: `${b}products/hornet` },
+  { label: 'BEETLE', href: `${b}products/beetle` },
+  { label: 'SPIDER', href: `${b}products/spider`, isNew: true },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -21,15 +23,15 @@ const currentPath = Astro.url.pathname;
   <div class="header-inner">
 
     <!-- ロゴ -->
-    <a href="/" class="header-logo">
-      <img src="/images/crooja_logo.png" alt="CROOJA" />
+    <a href={b} class="header-logo">
+      <img src={`${b}images/crooja_logo.png`} alt="CROOJA" />
     </a>
 
     <!-- デスクトップナビ -->
     <nav class="desktop-nav">
 
       <div class="dropdown">
-        <a href="/products" class="nav-link dropdown-trigger">
+        <a href={`${b}products`} class="nav-link dropdown-trigger">
           PRODUCTS
           <svg width="9" height="5" viewBox="0 0 10 6" fill="none">
             <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -66,7 +68,7 @@ const currentPath = Astro.url.pathname;
   <!-- モバイルメニュー -->
   <div id="mobile-menu" class="mobile-menu">
     <nav class="mobile-nav">
-      <a href="/products" class="mobile-link mobile-link--main">PRODUCTS</a>
+      <a href={`${b}products`} class="mobile-link mobile-link--main">PRODUCTS</a>
       {productItems.map((item) => (
         <a href={item.href} class="mobile-link mobile-link--sub">
           {item.label}
