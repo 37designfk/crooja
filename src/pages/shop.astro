@@ -59,7 +59,7 @@ const shops = [
 <style>
   /* Hero */
   .hero {
-    background: #0a0a0a;
+    background: #fff;
     padding: 6rem 1.5rem 4rem;
     text-align: center;
     position: relative;
@@ -73,7 +73,7 @@ const shops = [
     transform: translate(-50%, -50%);
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(230,155,155,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(230,155,155,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
   .hero-inner {
@@ -83,7 +83,7 @@ const shops = [
     font-family: 'Cinzel', serif;
     font-size: 10px;
     letter-spacing: 6px;
-    color: #666;
+    color: #bbb;
     text-transform: uppercase;
     margin-bottom: 1rem;
   }
@@ -91,7 +91,7 @@ const shops = [
     font-family: 'Cinzel', serif;
     font-size: clamp(36px, 8vw, 64px);
     font-weight: 400;
-    color: #fff;
+    color: #111;
     letter-spacing: 16px;
     margin-bottom: 1.5rem;
   }
@@ -102,14 +102,14 @@ const shops = [
     margin: 0 auto 1rem;
   }
   .hero-sub {
-    color: #555;
+    color: #aaa;
     font-size: 12px;
     letter-spacing: 4px;
   }
 
   /* Shop List */
   .shop-section {
-    background: #0e0e0e;
+    background: #fff;
     padding: 0 1.5rem 4rem;
   }
   .shop-list {
@@ -121,19 +121,19 @@ const shops = [
     align-items: center;
     justify-content: space-between;
     padding: 1.4rem 1.2rem;
-    border-bottom: 1px solid #1a1a1a;
+    border-bottom: 1px solid #ebebeb;
     text-decoration: none;
-    color: #fff;
+    color: #111;
     transition: background 0.3s, border-color 0.3s;
     animation: fadeUp 0.5s ease both;
     animation-delay: var(--delay);
   }
   .shop-card:hover {
-    background: #151515;
-    border-color: #2a2a2a;
+    background: #fafafa;
+    border-color: #ddd;
   }
   .shop-card:first-child {
-    border-top: 1px solid #1a1a1a;
+    border-top: 1px solid #ebebeb;
   }
 
   .shop-info {
@@ -144,14 +144,14 @@ const shops = [
   .shop-number {
     font-family: 'Cinzel', serif;
     font-size: 11px;
-    color: #333;
+    color: #ccc;
     letter-spacing: 2px;
     min-width: 24px;
   }
   .shop-name {
     font-size: 17px;
     font-weight: 600;
-    color: #eee;
+    color: #222;
     margin-bottom: 0.2rem;
     letter-spacing: 0.5px;
     transition: color 0.3s;
@@ -160,7 +160,7 @@ const shops = [
     color: #E69B9B;
   }
   .shop-desc {
-    color: #555;
+    color: #aaa;
     font-size: 11px;
     letter-spacing: 0.5px;
   }
@@ -173,14 +173,14 @@ const shops = [
   }
   .shop-area {
     font-size: 10px;
-    color: #444;
+    color: #999;
     letter-spacing: 2px;
-    border: 1px solid #222;
+    border: 1px solid #ddd;
     padding: 3px 10px;
     border-radius: 2px;
   }
   .shop-arrow {
-    color: #333;
+    color: #ccc;
     transition: color 0.3s, transform 0.3s;
   }
   .shop-card:hover .shop-arrow {
@@ -190,13 +190,13 @@ const shops = [
 
   /* CTA */
   .cta-section {
-    background: #0a0a0a;
+    background: #fafafa;
     text-align: center;
     padding: 3rem 1.5rem 5rem;
-    border-top: 1px solid #1a1a1a;
+    border-top: 1px solid #ebebeb;
   }
   .cta-text {
-    color: #555;
+    color: #888;
     font-size: 13px;
     margin-bottom: 1.5rem;
     letter-spacing: 1px;
@@ -214,7 +214,7 @@ const shops = [
   }
   .cta-btn:hover {
     background: #E69B9B;
-    color: #0a0a0a;
+    color: #fff;
   }
 
   @keyframes fadeUp {
