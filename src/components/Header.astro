@@ -24,7 +24,7 @@ const currentPath = Astro.url.pathname;
 
     <!-- ロゴ -->
     <a href={b} class="header-logo">
-      <img src={`${b}images/crooja_logo.png`} alt="CROOJA" />
+      <picture><source srcset={`${b}images/crooja_logo.webp`} type="image/webp" /><img src={`${b}images/crooja_logo.png`} alt="CROOJA" width="400" height="91" /></picture>
     </a>
 
     <!-- デスクトップナビ -->

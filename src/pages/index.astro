@@ -11,12 +11,12 @@ const b = import.meta.env.BASE_URL;
   <!-- ヒーロー -->
   <section class="hero">
     <div class="hero-gallery">
-      <div class="hero-img"><img src={`${b}images/resaize__71532638-1.jpg`} alt="CROOJA" /></div>
-      <div class="hero-img"><img src={`${b}images/S__71532636.jpg`} alt="CROOJA" /></div>
-      <div class="hero-img"><img src={`${b}images/S__71532631.jpg`} alt="CROOJA" /></div>
+      <div class="hero-img"><picture><source srcset={`${b}images/resaize__71532638-1.webp`} type="image/webp" /><img src={`${b}images/resaize__71532638-1.jpg`} alt="CROOJA" width="1200" height="900" fetchpriority="high" /></picture></div>
+      <div class="hero-img"><picture><source srcset={`${b}images/S__71532636.webp`} type="image/webp" /><img src={`${b}images/S__71532636.jpg`} alt="CROOJA" width="1200" height="900" /></picture></div>
+      <div class="hero-img"><picture><source srcset={`${b}images/S__71532631.webp`} type="image/webp" /><img src={`${b}images/S__71532631.jpg`} alt="CROOJA" width="1200" height="900" /></picture></div>
     </div>
     <div class="hero-overlay">
-      <img src={`${b}images/crooja_logo.png`} alt="CROOJA" class="hero-logo" />
+      <picture><source srcset={`${b}images/crooja_logo.webp`} type="image/webp" /><img src={`${b}images/crooja_logo.png`} alt="CROOJA" class="hero-logo" width="400" height="91" /></picture>
       <p class="hero-catch">Greatest snowboard of all time</p>
     </div>
   </section>
@@ -27,7 +27,7 @@ const b = import.meta.env.BASE_URL;
       <span>26-27 SEASON LINE UP</span>
     </div>
     <a href={`${b}products`}>
-      <img src={`${b}images/catalog-12.png`} alt="CROOJA 26-27 LINE UP" class="lineup-img" />
+      <picture><source srcset={`${b}images/catalog-12.webp`} type="image/webp" /><img src={`${b}images/catalog-12.png`} alt="CROOJA 26-27 LINE UP" class="lineup-img" width="800" height="566" loading="lazy" /></picture>
     </a>
   </section>
 
@@ -40,7 +40,7 @@ const b = import.meta.env.BASE_URL;
       </div>
       <div class="new-catalog-wrap">
         <a href={`${b}products/spider`}>
-          <img src={`${b}images/catalog-08.png`} alt="CROOJA SPIDER catalog" class="new-catalog-img" />
+          <picture><source srcset={`${b}images/catalog-08.webp`} type="image/webp" /><img src={`${b}images/catalog-08.png`} alt="CROOJA SPIDER catalog" class="new-catalog-img" width="800" height="566" loading="lazy" /></picture>
         </a>
       </div>
       <div class="sec-cta">

@@ -28,12 +28,17 @@ const categories = [
           {cat.riders.map(rider => (
             <div class="rider-card">
               <div class="rider-img-wrap">
-                <img
-                  src={b + rider.image.slice(1)}
-                  alt={rider.nameEn}
-                  class="rider-img"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcset={b + rider.image.slice(1).replace(/\.(jpg|png)$/, '.webp')} type="image/webp" />
+                  <img
+                    src={b + rider.image.slice(1)}
+                    alt={rider.nameEn}
+                    class="rider-img"
+                    loading="lazy"
+                    width="600"
+                    height="667"
+                  />
+                </picture>
               </div>
               <div class="rider-info">
                 <p class="rider-name-en">{rider.nameEn}</p>

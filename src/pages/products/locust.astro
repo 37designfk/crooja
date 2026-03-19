@@ -22,11 +22,7 @@ const b = import.meta.env.BASE_URL;
   <!-- カタログページ画像 (メイン) -->
   <section class="catalog-section">
     <div class="catalog-wrap">
-      <img
-        src={b + product.catalogImage.slice(1)}
-        alt={`CROOJA ${product.name} カタログ`}
-        class="catalog-full"
-      />
+      <picture><source srcset={b + product.catalogImage.slice(1).replace(".png", ".webp")} type="image/webp" /><img src={b + product.catalogImage.slice(1)} alt={`CROOJA ${product.name} カタログ`} class="catalog-full" width="800" height="566" /></picture>
     </div>
   </section>
 
