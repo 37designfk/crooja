@@ -5,22 +5,22 @@
   --color-brand-dark: #0e0e0e;
   --color-brand-pink: #E69B9B;
   --color-brand-gray: #999999;
-  --font-cinzel: 'Cinzel', serif;
-  --font-manrope: 'Manrope', sans-serif;
+  --font-cinzel: "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "游ゴシック体", "Yu Gothic", YuGothic, system-ui, -apple-system, sans-serif;
+  --font-manrope: "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "游ゴシック体", "Yu Gothic", YuGothic, system-ui, -apple-system, sans-serif;
 }
 
 /* ベーススタイル */
 html {
   background-color: #ffffff;
   color: #111111;
-  font-family: 'Manrope', sans-serif;
+  font-family: "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "游ゴシック体", "Yu Gothic", YuGothic, system-ui, -apple-system, sans-serif;
   scroll-behavior: smooth;
 }
 
 body {
   background-color: #ffffff;
   color: #111111;
-  font-family: 'Manrope', sans-serif;
+  font-family: "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "游ゴシック体", "Yu Gothic", YuGothic, system-ui, -apple-system, sans-serif;
 }
 
 /* スクロールバー */
