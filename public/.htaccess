@@ -1,3 +1,30 @@
+# Language auto-detection based on Accept-Language header
+# Only redirects top page (/) to appropriate language version
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Skip if already on a language path
+  RewriteCond %{REQUEST_URI} ^/(en|zh|ko)/ [NC]
+  RewriteRule ^ - [L]
+
+  # Only apply to top page
+  RewriteCond %{REQUEST_URI} ^/?$
+
+  # Korean
+  RewriteCond %{HTTP:Accept-Language} ^ko [NC]
+  RewriteRule ^$ /ko/ [R=302,L]
+
+  # Chinese
+  RewriteCond %{REQUEST_URI} ^/?$
+  RewriteCond %{HTTP:Accept-Language} ^zh [NC]
+  RewriteRule ^$ /zh/ [R=302,L]
+
+  # English
+  RewriteCond %{REQUEST_URI} ^/?$
+  RewriteCond %{HTTP:Accept-Language} ^en [NC]
+  RewriteRule ^$ /en/ [R=302,L]
+</IfModule>
+
 # Enable gzip compression
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml

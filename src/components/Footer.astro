@@ -1,10 +1,18 @@
 ---
+import type { Lang } from '../i18n/config';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'ja' } = Astro.props;
 const b = import.meta.env.BASE_URL;
+const langPrefix = lang === 'ja' ? '' : `${lang}/`;
 ---
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <a href={b} class="footer-logo">
+    <a href={`${b}${langPrefix}`} class="footer-logo">
       <img src={`${b}images/crooja_logo.png`} alt="CROOJA" />
     </a>
     <p class="footer-copy">&copy; 2026 CROOJA. All Rights Reserved.</p>

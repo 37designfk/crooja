@@ -1,19 +1,28 @@
 ---
+import type { Lang } from '../i18n/config';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  lang?: Lang;
+  pagePath?: string;
+}
+
+const { lang = 'ja', pagePath = '/' } = Astro.props;
 const b = import.meta.env.BASE_URL;
+const langPrefix = lang === 'ja' ? '' : `${lang}/`;
 
 const navItems = [
-  { label: 'TEAM', href: `${b}team` },
-  { label: 'SHOP', href: `${b}shop` },
-  { label: 'CONTACT', href: `${b}contact` },
+  { label: 'SHOP', href: `${b}${langPrefix}shop` },
+  { label: 'CONTACT', href: `${b}${langPrefix}contact` },
 ];
 
 const productItems = [
-  { label: 'LOCUST', href: `${b}products/locust` },
-  { label: 'WORM', href: `${b}products/worm` },
-  { label: 'MANTIS', href: `${b}products/mantis` },
-  { label: 'HORNET', href: `${b}products/hornet` },
-  { label: 'BEETLE', href: `${b}products/beetle` },
-  { label: 'SPIDER', href: `${b}products/spider`, isNew: true },
+  { label: 'LOCUST', href: `${b}${langPrefix}products/locust` },
+  { label: 'WORM', href: `${b}${langPrefix}products/worm` },
+  { label: 'MANTIS', href: `${b}${langPrefix}products/mantis` },
+  { label: 'HORNET', href: `${b}${langPrefix}products/hornet` },
+  { label: 'BEETLE', href: `${b}${langPrefix}products/beetle` },
+  { label: 'SPIDER', href: `${b}${langPrefix}products/spider`, isNew: true },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -23,7 +32,7 @@ const currentPath = Astro.url.pathname;
   <div class="header-inner">
 
     <!-- ロゴ -->
-    <a href={b} class="header-logo">
+    <a href={`${b}${langPrefix}`} class="header-logo">
       <picture><source srcset={`${b}images/crooja_logo.webp`} type="image/webp" /><img src={`${b}images/crooja_logo.png`} alt="CROOJA" width="400" height="91" /></picture>
     </a>
 
@@ -31,7 +40,7 @@ const currentPath = Astro.url.pathname;
     <nav class="desktop-nav">
 
       <div class="dropdown">
-        <a href={`${b}products`} class="nav-link dropdown-trigger">
+        <a href={`${b}${langPrefix}products`} class="nav-link dropdown-trigger">
           PRODUCTS
           <svg width="9" height="5" viewBox="0 0 10 6" fill="none">
             <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -55,6 +64,8 @@ const currentPath = Astro.url.pathname;
           {item.label}
         </a>
       ))}
+
+      <LanguageSwitcher lang={lang} pagePath={pagePath} />
     </nav>
 
     <!-- ハンバーガー -->
@@ -68,7 +79,7 @@ const currentPath = Astro.url.pathname;
   <!-- モバイルメニュー -->
   <div id="mobile-menu" class="mobile-menu">
     <nav class="mobile-nav">
-      <a href={`${b}products`} class="mobile-link mobile-link--main">PRODUCTS</a>
+      <a href={`${b}${langPrefix}products`} class="mobile-link mobile-link--main">PRODUCTS</a>
       {productItems.map((item) => (
         <a href={item.href} class="mobile-link mobile-link--sub">
           {item.label}
@@ -78,6 +89,9 @@ const currentPath = Astro.url.pathname;
       {navItems.map((item) => (
         <a href={item.href} class="mobile-link mobile-link--main">{item.label}</a>
       ))}
+      <div class="mobile-lang-switcher">
+        <LanguageSwitcher lang={lang} pagePath={pagePath} />
+      </div>
     </nav>
   </div>
 </header>
@@ -237,6 +251,10 @@ const currentPath = Astro.url.pathname;
   }
   .mobile-link:hover {
     color: #E69B9B;
+  }
+  .mobile-lang-switcher {
+    padding: 13px 0;
+    border-bottom: 1px solid #f0f0f0;
   }
 
   @media (max-width: 768px) {

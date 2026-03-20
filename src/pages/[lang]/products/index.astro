@@ -1,26 +1,36 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { products } from '../../data/products';
+import Layout from '../../../layouts/Layout.astro';
+import { products } from '../../../data/products';
+import { foreignLangs } from '../../../i18n/config';
+import { t } from '../../../i18n/utils';
+import type { Lang } from '../../../i18n/config';
+
+export function getStaticPaths() {
+  return foreignLangs.map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
 const b = import.meta.env.BASE_URL;
+const lp = `${lang}/`;
 ---
 
-<Layout title="PRODUCTS" description="CROOJA スノーボード全モデル一覧" pagePath="/products">
+<Layout title="PRODUCTS" description={`CROOJA ${t(lang, 'products_title')}`} lang={lang} pagePath="/products">
 
   <section class="page-header">
-    <p class="page-label">26-27 SEASON LINE UP</p>
-    <h1 class="page-title">PRODUCTS</h1>
+    <p class="page-label">{t(lang, 'products_label')}</p>
+    <h1 class="page-title">{t(lang, 'products_title')}</h1>
   </section>
 
-  <!-- 全ボード一覧ビジュアル -->
+  <!-- Lineup visual -->
   <section class="lineup-section">
-    <picture><source srcset={`${b}images/catalog-12.webp`} type="image/webp" /><img src={`${b}images/catalog-12.png`} alt="CROOJA 26-27 全モデル" class="lineup-img" width="800" height="566" /></picture>
+    <picture><source srcset={`${b}images/catalog-12.webp`} type="image/webp" /><img src={`${b}images/catalog-12.png`} alt="CROOJA 26-27 LINE UP" class="lineup-img" width="800" height="566" /></picture>
   </section>
 
-  <!-- カタログページグリッド -->
+  <!-- Catalog card grid -->
   <section class="catalog-grid">
     {products.map((p, i) => (
-      <a href={`${b}products/${p.slug}`} class="catalog-card">
-        {p.isNew && <span class="card-new">NEW MODEL</span>}
+      <a href={`${b}${lp}products/${p.slug}`} class="catalog-card">
+        {p.isNew && <span class="card-new">{t(lang, 'product_new_model')}</span>}
         <div class="card-img-wrap">
           <picture><source srcset={b + p.catalogImage.slice(1).replace('.png', '.webp')} type="image/webp" /><img src={b + p.catalogImage.slice(1)} alt={`CROOJA ${p.name}`} class="card-img" loading="lazy" width="800" height="566" /></picture>
         </div>
@@ -77,13 +87,13 @@ const b = import.meta.env.BASE_URL;
     margin: 0 auto;
   }
 
-  /* カタログカードグリッド */
+  /* Catalog card grid */
   .catalog-grid {
     background: #fff;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1px;
-    background-color: #e8e8e8; /* gap の色 */
+    background-color: #e8e8e8;
     padding: 1px;
   }
   .catalog-card {

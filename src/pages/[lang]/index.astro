@@ -1,14 +1,23 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { products } from '../data/products';
+import Layout from '../../layouts/Layout.astro';
+import { products } from '../../data/products';
+import { foreignLangs } from '../../i18n/config';
+import { t } from '../../i18n/utils';
+import type { Lang } from '../../i18n/config';
 
+export function getStaticPaths() {
+  return foreignLangs.map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
 const newProducts = products.filter(p => p.isNew);
 const b = import.meta.env.BASE_URL;
+const lp = `${lang}/`; // lang prefix for links
 ---
 
-<Layout title="CROOJA" description="CROOJA - Greatest snowboard of all time" pagePath="/">
+<Layout title="CROOJA" description={t(lang, 'site_description')} lang={lang} pagePath="/">
 
-  <!-- ヒーロー -->
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-gallery">
       <div class="hero-img"><picture><source srcset={`${b}images/resaize__71532638-1-600.webp 600w, ${b}images/resaize__71532638-1.webp 1200w`} sizes="(max-width: 600px) 100vw, 33vw" type="image/webp" /><img src={`${b}images/resaize__71532638-1.jpg`} alt="CROOJA" width="1200" height="900" fetchpriority="high" /></picture></div>
@@ -17,16 +26,16 @@ const b = import.meta.env.BASE_URL;
     </div>
     <div class="hero-overlay">
       <picture><source srcset={`${b}images/crooja_logo.webp`} type="image/webp" /><img src={`${b}images/crooja_logo.png`} alt="CROOJA" class="hero-logo" width="400" height="91" /></picture>
-      <p class="hero-catch">Greatest snowboard of all time</p>
+      <p class="hero-catch">{t(lang, 'hero_catch')}</p>
     </div>
   </section>
 
-  <!-- 全ボードビジュアル (catalog-12) -->
+  <!-- Lineup visual (catalog-12) -->
   <section class="lineup-visual">
     <div class="lineup-label">
-      <span>26-27 SEASON LINE UP</span>
+      <span>{t(lang, 'lineup_label')}</span>
     </div>
-    <a href={`${b}products`}>
+    <a href={`${b}${lp}products`}>
       <picture><source srcset={`${b}images/catalog-12.webp`} type="image/webp" /><img src={`${b}images/catalog-12.png`} alt="CROOJA 26-27 LINE UP" class="lineup-img" width="800" height="566" loading="lazy" /></picture>
     </a>
   </section>
@@ -35,25 +44,25 @@ const b = import.meta.env.BASE_URL;
   {newProducts.length > 0 && (
     <section class="section-new">
       <div class="sec-header">
-        <p class="sec-tag">26-27 NEW MODEL</p>
+        <p class="sec-tag">{t(lang, 'new_model_tag')}</p>
         <h2 class="sec-title">SPIDER</h2>
       </div>
       <div class="new-catalog-wrap">
-        <a href={`${b}products/spider`}>
+        <a href={`${b}${lp}products/spider`}>
           <picture><source srcset={`${b}images/catalog-08.webp`} type="image/webp" /><img src={`${b}images/catalog-08.png`} alt="CROOJA SPIDER catalog" class="new-catalog-img" width="800" height="566" loading="lazy" /></picture>
         </a>
       </div>
       <div class="sec-cta">
-        <a href={`${b}products/spider`} class="btn-dark">VIEW SPIDER →</a>
-        <a href={`${b}products`} class="btn-outline">ALL PRODUCTS</a>
+        <a href={`${b}${lp}products/spider`} class="btn-dark">{t(lang, 'view_spider')}</a>
+        <a href={`${b}${lp}products`} class="btn-outline">{t(lang, 'all_products')}</a>
       </div>
     </section>
   )}
 
   <!-- Instagram -->
   <section class="section-insta">
-    <h2 class="sec-title-sm">Instagram</h2>
-    <p class="insta-hash">#crooja_snowboard</p>
+    <h2 class="sec-title-sm">{t(lang, 'instagram_title')}</h2>
+    <p class="insta-hash">{t(lang, 'instagram_hash')}</p>
     <div class="insta-embed-wrap">
       <script src="https://insta-widget.37design.co.jp/widget.js" defer></script>
       <div data-insta-widget="crooja" data-cols="3" data-rows="2"></div>

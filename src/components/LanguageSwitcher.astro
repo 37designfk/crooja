@@ -1,0 +1,108 @@
+---
+import { languages, type Lang, defaultLang } from '../i18n/config';
+
+interface Props {
+  lang: Lang;
+  pagePath?: string;
+}
+
+const { lang, pagePath = '/' } = Astro.props;
+const b = import.meta.env.BASE_URL;
+
+const langLinks = (Object.entries(languages) as [Lang, typeof languages[Lang]][]).map(([code, config]) => {
+  const cleanPath = pagePath.replace(/^\//, '');
+  const href = code === defaultLang
+    ? `${b}${cleanPath}`
+    : `${b}${code}/${cleanPath}`;
+  return { code, label: config.label, href, active: code === lang };
+});
+
+const currentLabel = languages[lang].label;
+---
+
+<div class="lang-switcher">
+  <button class="lang-trigger" aria-label="言語を切り替える">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M2 12h20"/>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+    <span class="lang-current">{currentLabel}</span>
+    <svg class="lang-chevron" width="8" height="5" viewBox="0 0 10 6" fill="none">
+      <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div class="lang-dropdown">
+    {langLinks.map((item) => (
+      <a
+        href={item.href}
+        class={`lang-option ${item.active ? 'lang-option--active' : ''}`}
+        aria-current={item.active ? 'true' : undefined}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .lang-switcher {
+    position: relative;
+  }
+  .lang-trigger {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #111;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    padding: 4px 0;
+    transition: color 0.2s;
+  }
+  .lang-trigger:hover {
+    color: #E69B9B;
+  }
+  .lang-chevron {
+    transition: transform 0.2s;
+  }
+  .lang-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding-top: 8px;
+    display: none;
+    min-width: 120px;
+    z-index: 60;
+  }
+  .lang-switcher:hover .lang-dropdown {
+    display: block;
+  }
+  .lang-option {
+    display: block;
+    padding: 9px 16px;
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    border: 1px solid #e8e8e8;
+    border-top: none;
+    transition: color 0.2s, background-color 0.2s;
+  }
+  .lang-option:first-child {
+    border-top: 1px solid #e8e8e8;
+  }
+  .lang-option:hover {
+    color: #E69B9B;
+    background: #fdf7f7;
+  }
+  .lang-option--active {
+    color: #E69B9B;
+    font-weight: 600;
+  }
+</style>

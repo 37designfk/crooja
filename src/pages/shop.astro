@@ -2,21 +2,43 @@
 import Layout from '../layouts/Layout.astro';
 
 const shops = [
-  { name: 'スポタカ',        url: 'https://spotaka.co.jp/',             desc: '心斎橋BIGSTEP本店', area: '大阪' },
-  { name: 'SPORTS BOMBER',  url: 'https://instagram.com/sports_bomber', desc: 'SPORTS BOMBER', area: '' },
-  { name: 'BREAK OUT',      url: 'https://www.breakout-jp.com/',        desc: 'BREAK OUT', area: '' },
-  { name: 'FLEA BOARDSHOP', url: 'https://flea.jp/',                    desc: '熊谷店 / 高崎 / 伊勢崎 / WEB', area: '関東' },
-  { name: 'MISTY',          url: 'https://www.misty-snow.com/',         desc: 'MISTY', area: '' },
-  { name: 'DREAMY',         url: 'https://www.dreamy1117.com/',         desc: 'DREAMY', area: '' },
-  { name: 'APORITO',        url: 'https://aporito-online.com/',          desc: '広島店 / 豊橋', area: '中国・東海' },
-  { name: 'DOT9',           url: 'http://dot9.biz/',                    desc: 'DOT9', area: '' },
-  { name: 'ウインドボーイ',   url: 'https://www.windboy.jp/',             desc: 'ウインドボーイ', area: '' },
-  { name: 'SHIFT',          url: 'http://www.shift-tuning.com/',         desc: 'SHIFT', area: '' },
-  { name: 'FEELS',          url: 'https://feelssnow.com/',               desc: 'FEELS', area: '' },
+  { name: 'モリヤマスポーツ',       url: 'http://morispo.co.jp/' },
+  { name: "follow's",              url: 'https://www.follows.co.jp/' },
+  { name: 'FLEA boardshop',        url: 'http://flea.jp/' },
+  { name: 'APORITO',               url: 'http://sportsgear.rizap.jp/' },
+  { name: 'SOCIETY01',             url: 'http://www.a-secret-society.com/' },
+  { name: 'SLASH',                 url: 'http://www1.megaegg.ne.jp/~slash/' },
+  { name: 'amp',                   url: 'http://www.amp8.co.jp/' },
+  { name: "See's",                 url: 'https://www.rakuten.co.jp/seeslife/' },
+  { name: 'VOLTAGE',               url: 'https://www.voltagesnowboard.com/' },
+  { name: 'Dreamy',                url: 'http://www.dreamy1117.com/' },
+  { name: 'MISTY',                 url: 'http://www.misty-snow.com/' },
+  { name: 'Rampjack',              url: 'https://www.taiyosp.co.jp/rampjack' },
+  { name: 'BREAK OUT',             url: 'http://www.breakout-jp.com/' },
+  { name: '熊屋',                   url: 'https://ameblo.jp/lm066765/' },
+  { name: 'SPORTS BOMBER',         url: 'https://sportsbomber.base.shop/' },
+  { name: 'SLIDE LINE',            url: 'http://slideline.net/' },
+  { name: 'SHIFT',                 url: 'http://www.shift-tuning.com/' },
+  { name: 'スポタカ',               url: 'https://spotaka.co.jp/' },
+  { name: 'Carnival',              url: 'https://store.shopping.yahoo.co.jp/carnival-fujisi/' },
+  { name: 'EXTREME',               url: 'http://www.extreme-jp.net/index.htm' },
+  { name: 'Mallard',               url: 'https://mallard.jp/' },
+  { name: 'FOREST Snowboard Shop', url: 'http://forest-snowboard.com/' },
+  { name: "InD's",                 url: 'http://inds.mens-product.com/' },
+  { name: 'DOT9',                  url: 'http://dot9.biz' },
+  { name: 'スポーツデポ',           url: '' },
+  { name: 'FEELS',                 url: 'https://feelssnow.com/' },
+  { name: 'Purple Haze',           url: 'https://purplehaze.co.jp/' },
+  { name: 'Superb',                url: 'http://theshopsuperb.jp/' },
+  { name: 'A-BONY',                url: 'https://a-bony.com/' },
+  { name: 'エレファントスポーツ',    url: 'https://www.elephant-sports.jp' },
+  { name: 'Tiger Surf Shop',       url: '' },
+  { name: 'スポーピアシラトリ',      url: '' },
+  { name: 'ムラサキスポーツ',       url: 'https://www.murasaki.co.jp/' },
 ];
 ---
 
-<Layout title="SHOP" description="CROOJA 取扱店舗一覧 26-27">
+<Layout title="SHOP" description="CROOJA 取扱店舗一覧 26-27" pagePath="/shop">
 
   <section class="hero">
     <div class="hero-inner">
@@ -30,21 +52,24 @@ const shops = [
   <section class="shop-section">
     <div class="shop-list">
       {shops.map((shop, i) => (
-        <a href={shop.url} target="_blank" rel="noopener noreferrer" class="shop-card" style={`--delay: ${i * 0.05}s`}>
-          <div class="shop-info">
-            <div class="shop-number">{String(i + 1).padStart(2, '0')}</div>
-            <div>
+        shop.url ? (
+          <a href={shop.url} target="_blank" rel="noopener noreferrer" class="shop-card" style={`--delay: ${i * 0.05}s`}>
+            <div class="shop-info">
+              <div class="shop-number">{String(i + 1).padStart(2, '0')}</div>
               <h3 class="shop-name">{shop.name}</h3>
-              <p class="shop-desc">{shop.desc}</p>
             </div>
-          </div>
-          <div class="shop-right">
-            {shop.area && <span class="shop-area">{shop.area}</span>}
             <svg class="shop-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M7 17L17 7M17 7H7M17 7v10"/>
             </svg>
+          </a>
+        ) : (
+          <div class="shop-card" style={`--delay: ${i * 0.05}s`}>
+            <div class="shop-info">
+              <div class="shop-number">{String(i + 1).padStart(2, '0')}</div>
+              <h3 class="shop-name">{shop.name}</h3>
+            </div>
           </div>
-        </a>
+        )
       ))}
     </div>
   </section>
@@ -156,28 +181,8 @@ const shops = [
     letter-spacing: 0.5px;
     transition: color 0.3s;
   }
-  .shop-card:hover .shop-name {
+  a.shop-card:hover .shop-name {
     color: #E69B9B;
-  }
-  .shop-desc {
-    color: #aaa;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-  }
-
-  .shop-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-  }
-  .shop-area {
-    font-size: 10px;
-    color: #999;
-    letter-spacing: 2px;
-    border: 1px solid #ddd;
-    padding: 3px 10px;
-    border-radius: 2px;
   }
   .shop-arrow {
     color: #ccc;

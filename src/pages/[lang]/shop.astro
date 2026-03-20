@@ -1,0 +1,157 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { foreignLangs } from '../../i18n/config';
+import { t } from '../../i18n/utils';
+import type { Lang } from '../../i18n/config';
+
+export function getStaticPaths() {
+  return foreignLangs.map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const b = import.meta.env.BASE_URL;
+const lp = `${lang}/`;
+---
+
+<Layout title="SHOP" lang={lang} pagePath="/shop">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">{t(lang, 'shop_authorized')}</p>
+      <h1 class="hero-title">{t(lang, 'shop_title')}</h1>
+      <div class="hero-line"></div>
+      <p class="hero-sub">{t(lang, 'shop_sub')}</p>
+    </div>
+  </section>
+
+  <!-- Coming Soon for foreign languages -->
+  <section class="coming-soon-section">
+    <div class="coming-soon-inner">
+      <div class="coming-soon-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#E69B9B" stroke-width="1">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <h2 class="coming-soon-title">{t(lang, 'shop_coming_soon_title')}</h2>
+      <p class="coming-soon-text">{t(lang, 'shop_coming_soon_text')}</p>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <p class="cta-text">{t(lang, 'shop_cta')}</p>
+    <a href={`${b}${lp}contact`} class="cta-btn">CONTACT</a>
+  </section>
+
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    background: #fff;
+    padding: 6rem 1.5rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(230,155,155,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+  }
+  .hero-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: #bbb;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 400;
+    color: #111;
+    letter-spacing: 16px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-line {
+    width: 40px;
+    height: 1px;
+    background: #E69B9B;
+    margin: 0 auto 1rem;
+  }
+  .hero-sub {
+    color: #aaa;
+    font-size: 12px;
+    letter-spacing: 4px;
+  }
+
+  /* Coming Soon */
+  .coming-soon-section {
+    background: #fff;
+    padding: 5rem 1.5rem 6rem;
+    border-top: 1px solid #ebebeb;
+  }
+  .coming-soon-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .coming-soon-icon {
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+  .coming-soon-title {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 400;
+    color: #111;
+    letter-spacing: 8px;
+    margin-bottom: 1.5rem;
+  }
+  .coming-soon-text {
+    color: #888;
+    font-size: 14px;
+    line-height: 2;
+    letter-spacing: 0.5px;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: #fafafa;
+    text-align: center;
+    padding: 3rem 1.5rem 5rem;
+    border-top: 1px solid #ebebeb;
+  }
+  .cta-text {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+  }
+  .cta-btn {
+    display: inline-block;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #E69B9B;
+    border: 1px solid #E69B9B;
+    padding: 12px 40px;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+  .cta-btn:hover {
+    background: #E69B9B;
+    color: #fff;
+  }
+</style>

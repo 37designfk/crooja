@@ -1,51 +1,65 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { products } from '../../data/products';
+import Layout from '../../../layouts/Layout.astro';
+import { products } from '../../../data/products';
+import { foreignLangs } from '../../../i18n/config';
+import { t } from '../../../i18n/utils';
+import type { Lang } from '../../../i18n/config';
 
-const product = products.find(p => p.slug === 'locust')!;
+export function getStaticPaths() {
+  return foreignLangs.flatMap(lang =>
+    products.map(p => ({
+      params: { lang, slug: p.slug },
+      props: { product: p },
+    }))
+  );
+}
+
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const { product } = Astro.props;
 const all = products;
-const idx = all.findIndex(p => p.slug === 'locust');
+const idx = all.findIndex(p => p.slug === slug);
 const prev = all[idx - 1] ?? null;
 const next = all[idx + 1] ?? null;
 const b = import.meta.env.BASE_URL;
+const lp = `${lang}/`;
 ---
 
-<Layout title={product.name} description={`CROOJA ${product.name} - ${product.nameJa}`} pagePath={`/products/locust`}>
+<Layout title={product.name} description={`CROOJA ${product.name} - ${product.nameJa}`} lang={lang} pagePath={`/products/${slug}`}>
 
-  <!-- ページヘッダー -->
+  <!-- Page header -->
   <div class="prod-header">
-    {product.isNew && <span class="new-badge">NEW MODEL 26-27</span>}
+    {product.isNew && <span class="new-badge">{t(lang, 'new_model_tag')}</span>}
     <h1 class="prod-title">{product.name}</h1>
     <p class="prod-title-ja">{product.nameJa}</p>
   </div>
 
-  <!-- カタログページ画像 (メイン) -->
+  <!-- Catalog page image (main) -->
   <section class="catalog-section">
     <div class="catalog-wrap">
-      <picture><source srcset={b + product.catalogImage.slice(1).replace(".png", ".webp")} type="image/webp" /><img src={b + product.catalogImage.slice(1)} alt={`CROOJA ${product.name} カタログ`} class="catalog-full" width="800" height="566" /></picture>
+      <picture><source srcset={b + product.catalogImage.slice(1).replace(".png", ".webp")} type="image/webp" /><img src={b + product.catalogImage.slice(1)} alt={`CROOJA ${product.name}`} class="catalog-full" width="800" height="566" /></picture>
     </div>
   </section>
 
-  <!-- 説明文 -->
+  <!-- Description -->
   <section class="desc-section">
     <div class="desc-inner">
-      <p class="desc-text">{product.description}</p>
+      <p class="desc-text">{t(lang, `product_desc_${product.slug}`)}</p>
     </div>
   </section>
 
-  <!-- 前後ナビ -->
+  <!-- Prev/Next nav -->
   <nav class="prod-nav">
     <div class="nav-inner">
       {prev ? (
-        <a href={`${b}products/${prev.slug}`} class="nav-item nav-prev">
-          <span class="nav-dir">← PREV</span>
+        <a href={`${b}${lp}products/${prev.slug}`} class="nav-item nav-prev">
+          <span class="nav-dir">{t(lang, 'product_prev')}</span>
           <span class="nav-name">{prev.name}</span>
         </a>
       ) : <div />}
-      <a href={`${b}products`} class="nav-all">ALL PRODUCTS</a>
+      <a href={`${b}${lp}products`} class="nav-all">{t(lang, 'all_products_link')}</a>
       {next ? (
-        <a href={`${b}products/${next.slug}`} class="nav-item nav-next">
-          <span class="nav-dir">NEXT →</span>
+        <a href={`${b}${lp}products/${next.slug}`} class="nav-item nav-next">
+          <span class="nav-dir">{t(lang, 'product_next')}</span>
           <span class="nav-name">{next.name}</span>
         </a>
       ) : <div />}

@@ -1,46 +1,58 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
+import { foreignLangs } from '../../i18n/config';
+import { t } from '../../i18n/utils';
+import type { Lang } from '../../i18n/config';
+
+export function getStaticPaths() {
+  return foreignLangs.map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const b = import.meta.env.BASE_URL;
+const lp = `${lang}/`;
 ---
 
-<Layout title="CONTACT" description="CROOJA お問い合わせ" pagePath="/contact">
+<Layout title="CONTACT" description={`CROOJA ${t(lang, 'contact_sub')}`} lang={lang} pagePath="/contact">
 
   <div class="page-header">
-    <h1 class="page-title">CONTACT</h1>
-    <p class="page-sub">お問い合わせ</p>
+    <h1 class="page-title">{t(lang, 'contact_title')}</h1>
+    <p class="page-sub">{t(lang, 'contact_sub')}</p>
   </div>
 
   <section class="contact-section">
     <div class="form-wrap">
       <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form">
         <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="lang" value={lang} />
         <p style="display:none;"><label>Don't fill this: <input name="bot-field" /></label></p>
 
         <label class="field">
-          <span class="field-label">NAME <em>*</em></span>
-          <input type="text" name="name" required placeholder="お名前" class="field-input" />
+          <span class="field-label">{t(lang, 'form_name')} <em>*</em></span>
+          <input type="text" name="name" required placeholder={t(lang, 'form_name_placeholder')} class="field-input" />
         </label>
 
         <label class="field">
-          <span class="field-label">EMAIL <em>*</em></span>
+          <span class="field-label">{t(lang, 'form_email')} <em>*</em></span>
           <input type="email" name="email" required placeholder="example@email.com" class="field-input" />
         </label>
 
         <label class="field">
-          <span class="field-label">SUBJECT <em>*</em></span>
-          <input type="text" name="subject" required placeholder="件名" class="field-input" />
+          <span class="field-label">{t(lang, 'form_subject')} <em>*</em></span>
+          <input type="text" name="subject" required placeholder={t(lang, 'form_subject_placeholder')} class="field-input" />
         </label>
 
         <label class="field">
-          <span class="field-label">MESSAGE <em>*</em></span>
-          <textarea name="message" required rows="7" placeholder="お問い合わせ内容をご記入ください" class="field-input field-textarea"></textarea>
+          <span class="field-label">{t(lang, 'form_message')} <em>*</em></span>
+          <textarea name="message" required rows="7" placeholder={t(lang, 'form_message_placeholder')} class="field-input field-textarea"></textarea>
         </label>
 
-        <button type="submit" class="submit-btn">SEND</button>
+        <button type="submit" class="submit-btn">{t(lang, 'form_send')}</button>
       </form>
 
       <p class="note">
-        ※ 返信には数日かかる場合があります。<br />
-        ※ 営業・スパムへの返信は行いません。
+        {t(lang, 'form_note_1')}<br />
+        {t(lang, 'form_note_2')}
       </p>
     </div>
   </section>
