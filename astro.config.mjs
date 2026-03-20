@@ -4,12 +4,8 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
-// GitHub Pages デプロイ設定
-// site: 'https://<GitHubユーザー名>.github.io' に変更してください
-// リポジトリ名でサブパスにデプロイする場合は base: '/リポジトリ名' を追加
 export default defineConfig({
-  site: 'https://37designfk.github.io',
-  base: '/crooja/',
+  site: 'https://crooja.com',
   output: 'static',
   vite: {
     plugins: [tailwindcss()]
