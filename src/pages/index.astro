@@ -8,6 +8,24 @@ const b = import.meta.env.BASE_URL;
 
 <Layout title="CROOJA" description="CROOJA - Greatest snowboard of all time" pagePath="/">
 
+<script define:vars={{ b }}>
+  (function() {
+    if (sessionStorage.getItem('lang-redirected')) return;
+    sessionStorage.setItem('lang-redirected', '1');
+
+    var supported = { en: 'en', zh: 'zh', ko: 'ko', de: 'de', fr: 'fr', es: 'es', it: 'it', ru: 'ru' };
+    var browserLang = (navigator.language || '').toLowerCase();
+    var short = browserLang.split('-')[0];
+
+    if (short === 'ja') return;
+
+    var match = supported[short];
+    if (match) {
+      window.location.replace(b + match + '/');
+    }
+  })();
+</script>
+
   <!-- ヒーロー -->
   <section class="hero">
     <div class="hero-gallery">
