@@ -1,0 +1,28 @@
+# 旧WordPress商品ページ → Astro商品ページ (301)
+/locust /products/locust/ 301
+/locust/ /products/locust/ 301
+/mantis /products/mantis/ 301
+/mantis/ /products/mantis/ 301
+/worm /products/worm/ 301
+/worm/ /products/worm/ 301
+/honet /products/hornet/ 301
+/honet/ /products/hornet/ 301
+/WORM /products/worm/ 301
+/WORM/ /products/worm/ 301
+
+# 旧WordPress embed
+/locust/embed /products/locust/ 301
+/locust/embed/ /products/locust/ 301
+
+# 旧WordPressページ（対応なし → 商品一覧へ）
+/team /products/ 301
+/team/ /products/ 301
+/catalog /products/ 301
+/catalog/ /products/ 301
+/accessory /products/ 301
+/accessory/ /products/ 301
+
+# 旧WordPress管理系URL → トップへ
+/wp-login.php / 301
+/wp-admin / 301
+/wp-admin/ / 301
